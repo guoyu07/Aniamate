@@ -12,7 +12,7 @@
 			position:relative;
 			width:100%;
 			height:400px;
-			background:url('bg.jpg') no-repeat;
+			background:url('bg.jpg') no-repeat ;
 			background-size:cover;
 		}
 		.home{
@@ -30,34 +30,44 @@
 			background:url('./redgoods.png') no-repeat;
 			background-position:0 0;
 			position:absolute;
+			transition-property:opacity;
+			transition-duration:.2s;
+			transition-timing-function:ease;
 		}
 		.g1{
 			top:150px;
 			left:380px;
+			transition-delay:.3s;
 		}
 		.g2{
 			top:280px;
 			left:580px;
+			transition-delay:.3s;
 		}
 		.g3{
 			top:270px;
 			left:820px;
+			transition-delay:.4s;
 		}
 		.g4{
 			top:280px;
 			left:1000px;
+			transition-delay:.5s;
 		}
 		.g5{
 			top:130px;
 			left:1030px;
+			transition-delay:.4s;
 		}
 		.g6{
 			top:110px;
 			left:850px;
+			transition-delay:.3s;
 		}
 		.g7{
 			top:130px;
 			left:580px;
+			transition-delay:.5s;
 		}
 		#card{
 			width:54px;
@@ -68,8 +78,8 @@
 			top:310px;
 			left:475px;
 			transition-property:top,left;
-			transition-duration:.5s;
-			transition-timing-function:ease-in;
+			transition-duration:.6s;
+			transition-timing-function:ease-in-out;
 		}
 	</style>
 </head>
@@ -91,55 +101,72 @@
 			var goods=document.getElementsByClassName('goods');
 			var arr=[{
 					top:310,
-					left:475
+					left:475,
+					flag:false
 				},{
 					top:280,
-					left:580
+					left:580,
+					flag:true
 				},{
 					top:180,
-					left:705
+					left:705,
+					flag:false
 				},{
 					top:270,
-					left:820
+					left:820,
+					flag:true
 				},{
 					top:310,
-					left:910
+					left:910,
+					flag:false
 				},{
 					top:280,
-					left:1000
+					left:1000,
+					flag:true
 				},{
 					top:180,
-					left:1135
+					left:1135,
+					flag:false
 				},{
 					top:130,
-					left:1030
+					left:1030,
+					flag:true
 				},{
 					top:60,
-					left:935
+					left:935,
+					flag:false
 				},{
 					top:110,
-					left:850
+					left:850,
+					flag:true
 				},{
 					top:180,
-					left:705
+					left:705,
+					flag:false
 				},{
 					top:130,
-					left:580
+					left:580,
+					flag:true
 				},{
 					top:65,
-					left:485
+					left:485,
+					flag:false
 				},{
 					top:150,
-					left:380
+					left:380,
+					flag:true
 				},{
 					top:190,
-					left:270
+					left:270,
+					flag:false
 				},{
 					top:260,
-					left:380
+					left:380,
+					flag:false
 				},{
 					top:310,
-					left:475
+					left:475,
+					flag:false
 				}];
 			count=0;
 			len=arr.length-1;		
@@ -148,21 +175,44 @@
 					posY=arr[count].left+'px';
 					card.style.top=posX;
 					card.style.left=posY;				
-					if(count==0 || count<=16)
-						card.style.backgroundPosition="0px -70px";
-					if(count>=1 && count<=6)
-						card.style.backgroundPosition="0px -210px";
-					if(count>6 && count<15)
-						card.style.backgroundPosition="0px -280px";
+					judge(count);
+					if(arr[count].flag){
+						if(count==1){
+							goods[count-1].style.opacity="0";
+						} if(count ==3){
+							goods[count-2].style.opacity="0";
+						} if(count==5){
+							goods[count-3].style.opacity="0";
+						} if(count==7){
+							goods[count-4].style.opacity="0";
+						} if(count==9){
+							goods[count-5].style.opacity="0";
+						} if(count==11){
+							goods[count-6].style.opacity="0";
+						} if(count==13){
+							goods[count-7].style.opacity="0";
+						} 
+					}
 					if(len==0){
 						len=arr.length-1;
 						count=0;
+						
+					}if(len==1){
+						for(var i=0;i<7;i++){
+							goods[i].style.opacity="1";
+						}
 					}
 					count++;
 					len--;
-				
-				
-			},1000);				
+			},500);	
+			function judge(count){
+				if(count==0 || count==16)
+					card.style.backgroundPosition="0px -70px";
+				if(count>=1 && count<=6)
+					card.style.backgroundPosition="0px -210px";
+				if(count>6 && count<=15)
+					card.style.backgroundPosition="0px -280px";
+			}
 				
 		}
 	</script>
