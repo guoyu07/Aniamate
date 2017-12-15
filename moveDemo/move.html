@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>move</title>
+	<style type="text/css">
+		body{
+			margin:0;
+			padding:0;
+		}
+		.container{
+			position:relative;
+			width:100%;
+			height:400px;
+			background:url('bg.jpg') no-repeat;
+			background-size:cover;
+		}
+		.home{
+			width:54px;
+			height:71px;
+			background:url('./tubiao.png') no-repeat;
+			background-position:0 0;
+			position:absolute;
+			top:260px;
+			left:380px;
+		}
+		.goods{
+			width:41px;
+			height:51px;
+			background:url('./redgoods.png') no-repeat;
+			background-position:0 0;
+			position:absolute;
+		}
+		.g1{
+			top:150px;
+			left:380px;
+		}
+		.g2{
+			top:280px;
+			left:580px;
+		}
+		.g3{
+			top:270px;
+			left:820px;
+		}
+		.g4{
+			top:280px;
+			left:1000px;
+		}
+		.g5{
+			top:130px;
+			left:1030px;
+		}
+		.g6{
+			top:110px;
+			left:850px;
+		}
+		.g7{
+			top:130px;
+			left:580px;
+		}
+		#card{
+			width:54px;
+			height:71px;
+			background:url('./tubiao.png') no-repeat;
+			background-position:0 -70px;
+			position:absolute;
+			top:310px;
+			left:475px;
+			transition-property:top,left;
+			transition-duration:.5s;
+			transition-timing-function:ease-in;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="home"></div>
+		<div class="goods g2" style="opacity:1;"></div>
+		<div class="goods g3" style="opacity:1;"></div>
+		<div class="goods g4" style="opacity:1;"></div>
+		<div class="goods g5" style="opacity:1;"></div>
+		<div class="goods g6" style="opacity:1;"></div>
+		<div class="goods g7" style="opacity:1;"></div>
+		<div class="goods g1" style="opacity:1;"></div>
+		<div id="card"></div>
+	</div>
+	<script type="text/javascript">
+		window.onload=function(){
+			var card=document.getElementById('card');
+			var goods=document.getElementsByClassName('goods');
+			var arr=[{
+					top:310,
+					left:475
+				},{
+					top:280,
+					left:580
+				},{
+					top:180,
+					left:705
+				},{
+					top:270,
+					left:820
+				},{
+					top:310,
+					left:910
+				},{
+					top:280,
+					left:1000
+				},{
+					top:180,
+					left:1135
+				},{
+					top:130,
+					left:1030
+				},{
+					top:60,
+					left:935
+				},{
+					top:110,
+					left:850
+				},{
+					top:180,
+					left:705
+				},{
+					top:130,
+					left:580
+				},{
+					top:65,
+					left:485
+				},{
+					top:150,
+					left:380
+				},{
+					top:190,
+					left:270
+				},{
+					top:260,
+					left:380
+				},{
+					top:310,
+					left:475
+				}];
+			count=0;
+			len=arr.length-1;		
+			setInterval(function(){
+					posX=arr[count].top+'px';
+					posY=arr[count].left+'px';
+					card.style.top=posX;
+					card.style.left=posY;				
+					if(count==0 || count<=16)
+						card.style.backgroundPosition="0px -70px";
+					if(count>=1 && count<=6)
+						card.style.backgroundPosition="0px -210px";
+					if(count>6 && count<15)
+						card.style.backgroundPosition="0px -280px";
+					if(len==0){
+						len=arr.length-1;
+						count=0;
+					}
+					count++;
+					len--;
+				
+				
+			},1000);				
+				
+		}
+	</script>
+</body>
+</html>
